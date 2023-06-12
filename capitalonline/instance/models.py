@@ -72,7 +72,7 @@ class AddInstanceRequest(BaseRequest):
         return value
 
     @DataDisks.setter
-    def DataDisks(self, data: list):
+    def DataDisks(self, data: list):    
         self._DataDisks = data
 
     @property
