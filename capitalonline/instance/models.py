@@ -117,7 +117,10 @@ class AddInstanceRequest(BaseRequest):
 
     @property
     def OrderedIP(self):
-        return self.OrderedIP
+        value = []
+        for item in self._OrderedIP:
+            value.append(item.__dict__)
+        return value
 
     @OrderedIP.setter
     def OrderedIP(self, ordered_ips):
