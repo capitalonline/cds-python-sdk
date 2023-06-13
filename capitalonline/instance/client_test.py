@@ -338,7 +338,7 @@ def TestClient_ModifyInstanceChargeType():
 
 
 if __name__ == '__main__':
-    TestClient_CreateInstance()
+    # TestClient_CreateInstance()
     # TestClient_DescribeInstance()
     # TestClient_ModifyInstanceName()
     # TestClient_ModifyInstanceSpec()
@@ -353,7 +353,7 @@ if __name__ == '__main__':
     # TestClient_ExtendSystemDisk()
     # TestClient_ResetInstancesPassword()
     # TestClient_ResetImage()
-    # TestClient_ModifyInstanceChargeType()
+    TestClient_ModifyInstanceChargeType()
 
 
 
