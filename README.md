@@ -77,7 +77,7 @@ You can find all the available actions from [here](https://github.com/capitalonl
 ```python
 #!/usr/bin/python
 from capitalonline.instance.client import NewClient,NewAddInstanceRequest
-from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk
+from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk, OrderedIP
 ak = ''
 sk = ''
 Beijing_region = 'Beijing'
