@@ -115,6 +115,12 @@ def TestClient_CreateInstance():
 
     request.DataDisks = [dd1]
     request.PrivateIp = [ip1]
+    
+    ordered_ip1 = OrderedIP()         # set order ip
+    ordered_ip1.PipeId = ''
+    ordered_ip1.IP = ['auto']
+
+    request.OrderedIP = [ordered_ip1]
 
     system_disk = SystemDisk()
     system_disk.IOPS = 5
