@@ -49,7 +49,11 @@ def TestClient_CreateInstance():
     ordered_ip1.PipeId = ''
     ordered_ip1.IP = ['auto']
 
-    request.OrderedIP = [ordered_ip1]
+    ordered_ip2 = OrderedIP()
+    ordered_ip2.PipeId = ""
+    ordered_ip2.IP = ['auto']
+
+    request.OrderedIP = [ordered_ip1] + [ordered_ip2]
 
     system_disk = SystemDisk()
     system_disk.IOPS = 5
@@ -334,7 +338,7 @@ def TestClient_ModifyInstanceChargeType():
 
 
 if __name__ == '__main__':
-    # TestClient_CreateInstance()
+    TestClient_CreateInstance()
     # TestClient_DescribeInstance()
     # TestClient_ModifyInstanceName()
     # TestClient_ModifyInstanceSpec()
@@ -349,7 +353,7 @@ if __name__ == '__main__':
     # TestClient_ExtendSystemDisk()
     # TestClient_ResetInstancesPassword()
     # TestClient_ResetImage()
-    TestClient_ModifyInstanceChargeType()
+    # TestClient_ModifyInstanceChargeType()
 
 
 
