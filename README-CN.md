@@ -140,7 +140,7 @@ def TestClient_CreateInstance():
     request.DataDisks = [dd1]
     request.PrivateIp = [ip1]
     
-    ordered_ip1 = OrderedIP()         # set order ip
+    ordered_ip1 = OrderedIP()                  # if set ordered ip, pipe id must be set.
     ordered_ip1.PipeId = ''
     ordered_ip1.IP = ['auto']
 
