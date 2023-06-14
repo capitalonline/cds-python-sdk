@@ -40,7 +40,8 @@ def TestClient_CreateInstance():
     request.DataDisks = [dd1]
     request.PrivateIp = [ip1]
 
-    ordered_ip1 = OrderedIP()         # set order ip
+    ordered_ip1 = OrderedIP()                 # if set ordered ip, pipe id must be set. And if this parameter is used, other parameters(such as PublicIp OR PrivateIp) do not take effect.
+
     ordered_ip1.PipeId = ''
     ordered_ip1.IP = ['auto']
 
