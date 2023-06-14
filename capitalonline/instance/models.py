@@ -39,6 +39,8 @@ class AddInstanceRequest(BaseRequest):
     UTC: int
     ImagePassword: str
     _UserData = []
+    # 自定义排序网卡
+    _OrderedIP = []
 
     def __init__(self, service, version, action):
         super().__init__(service, version, action)
@@ -58,6 +60,8 @@ class AddInstanceRequest(BaseRequest):
             value['PublicIp'] = self.PublicIp
         if self._UserData:
             value['UserData'] = self.UserData
+        if self._OrderedIP:
+            value['OrderedIP'] = self.OrderedIP
         return value
 
     @property
@@ -68,7 +72,7 @@ class AddInstanceRequest(BaseRequest):
         return value
 
     @DataDisks.setter
-    def DataDisks(self, data: list):
+    def DataDisks(self, data: list):    
         self._DataDisks = data
 
     @property
@@ -111,6 +115,17 @@ class AddInstanceRequest(BaseRequest):
     def UserData(self, user_data):
         self._UserData = user_data
 
+    @property
+    def OrderedIP(self):
+        value = []
+        for item in self._OrderedIP:
+            value.append(item.__dict__)
+        return value
+
+    @OrderedIP.setter
+    def OrderedIP(self, ordered_ips):
+        self._OrderedIP = ordered_ips
+
 
 class SystemDisk:
     Type: str
@@ -126,6 +141,11 @@ class DataDisk:
 
 class PrivateIp:
     PrivateId: str
+    IP: list
+
+
+class OrderedIP:
+    PipeId: str
     IP: list
 
 

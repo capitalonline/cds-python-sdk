@@ -77,7 +77,7 @@ You can find all the available actions from [here](https://github.com/capitalonl
 ```python
 #!/usr/bin/python
 from capitalonline.instance.client import NewClient,NewAddInstanceRequest
-from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk
+from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk, OrderedIP
 ak = ''
 sk = ''
 Beijing_region = 'Beijing'
@@ -115,6 +115,12 @@ def TestClient_CreateInstance():
 
     request.DataDisks = [dd1]
     request.PrivateIp = [ip1]
+    
+    ordered_ip1 = OrderedIP()         # set order ip
+    ordered_ip1.PipeId = ''
+    ordered_ip1.IP = ['auto']
+
+    request.OrderedIP = [ordered_ip1]
 
     system_disk = SystemDisk()
     system_disk.IOPS = 5

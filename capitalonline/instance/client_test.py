@@ -5,7 +5,7 @@ from capitalonline.instance.client import NewClient, NewAddInstanceRequest, NewM
     NewResizeDiskRequest, NewDeleteDiskRequest, NewStartInstancesRequest, NewStopInstancesRequest, \
     NewRebootInstancesRequest, NewModifyIpRequest, NewExtendSystemDiskRequest, NewResetInstancesPasswordRequest, \
     NewResetImageRequest, NewModifyInstanceChargeTypeRequest
-from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk
+from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk, OrderedIP
 
 ak = ''
 sk = ''
@@ -45,6 +45,15 @@ def TestClient_CreateInstance():
 
     request.DataDisks = [dd1]
     request.PrivateIp = [ip1]
+    ordered_ip1 = OrderedIP()         # set order ip
+    ordered_ip1.PipeId = ''
+    ordered_ip1.IP = ['auto']
+
+    ordered_ip2 = OrderedIP()
+    ordered_ip2.PipeId = ""
+    ordered_ip2.IP = ['auto']
+
+    request.OrderedIP = [ordered_ip1] + [ordered_ip2]
 
     system_disk = SystemDisk()
     system_disk.IOPS = 5
