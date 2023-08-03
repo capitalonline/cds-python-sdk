@@ -354,6 +354,8 @@ def TestClient_DescribeInstanceMonitor():
     request.Period = 60  # Period  must be set  60/900
     request.StartTime = '2023-08-01 16:15:00'  # StartTime must be set
     request.EndTime = '2023-08-01 16:25:00'  # EndTime must be set
+    request.InterfaceId = ''  # This parameter is required if you need to query network information
+    request.DiskId = ''  # This parameter is required if you need to query disk information
     response, err = client.DescribeInstanceMonitor(request)
     print(f"Describe  Instance Monitor response:{response}, err:{err}")
 
