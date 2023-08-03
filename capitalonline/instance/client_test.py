@@ -4,7 +4,7 @@ from capitalonline.instance.client import NewClient, NewAddInstanceRequest, NewM
     NewDescribeInstanceRequest, NewDeleteInstanceRequest, NewModifyInstanceSpecRequest, NewCreateDiskRequest, \
     NewResizeDiskRequest, NewDeleteDiskRequest, NewStartInstancesRequest, NewStopInstancesRequest, \
     NewRebootInstancesRequest, NewModifyIpRequest, NewExtendSystemDiskRequest, NewResetInstancesPasswordRequest, \
-    NewResetImageRequest, NewModifyInstanceChargeTypeRequest
+    NewResetImageRequest, NewModifyInstanceChargeTypeRequest, NewDescribeInstanceMonitorRequest
 from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk, OrderedIP
 
 ak = ''
@@ -338,6 +338,27 @@ def TestClient_ModifyInstanceChargeType():
     print(f"Modify Instance Charge Type response:{response}, err:{err}")
 
 
+def TestClient_DescribeInstanceMonitor():
+    """
+    get instance monitor.
+    :return:
+    """
+
+    client, err = NewClient(ak, sk, Beijing_region)
+    if err:
+        print(f'err:{err}')
+        return
+    request = NewDescribeInstanceMonitorRequest()
+    request.InstanceId = "4e91cf34-d276-473f-95bf-596c32e0edb0"  # Instance id must be set.
+    request.MetricName = 'CPUUtilization'  # MetricName type must be set
+    request.Period = 60  # Period  must be set  60/900
+    request.StartTime = '2023-07-24 16:15:00'  # StartTime type must be set
+    request.EndTime = '2023-07-24 16:25:00'  # EndTime type must be set
+    response, err = client.DescribeInstanceMonitor(request)
+    print(f"Describe  Instance Monitor response:{response}, err:{err}")
+
+
+
 if __name__ == '__main__':
     # TestClient_CreateInstance()
     # TestClient_DescribeInstance()
@@ -354,8 +375,8 @@ if __name__ == '__main__':
     # TestClient_ExtendSystemDisk()
     # TestClient_ResetInstancesPassword()
     # TestClient_ResetImage()
-    TestClient_ModifyInstanceChargeType()
-
+    # TestClient_ModifyInstanceChargeType()
+    TestClient_DescribeInstanceMonitor()
 
 
 

@@ -287,3 +287,13 @@ class StopInstancesRequest(BaseRequest):
 
 class RebootInstancesRequest(BaseRequest):
     InstanceIds: str
+
+
+class DescribeInstanceMonitorRequest(BaseRequest):
+    InstanceId: str
+    MetricName: str
+    Period: int
+    StartTime: str
+    EndTime: str
+    InterfaceId: str
+    DiskId: str
