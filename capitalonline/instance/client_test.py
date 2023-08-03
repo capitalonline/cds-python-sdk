@@ -349,11 +349,11 @@ def TestClient_DescribeInstanceMonitor():
         print(f'err:{err}')
         return
     request = NewDescribeInstanceMonitorRequest()
-    request.InstanceId = "4e91cf34-d276-473f-95bf-596c32e0edb0"  # Instance id must be set.
-    request.MetricName = 'CPUUtilization'  # MetricName type must be set
+    request.InstanceId = "instance_id"  # Instance id must be set.
+    request.MetricName = 'CPUUtilization'  # MetricName  must be set
     request.Period = 60  # Period  must be set  60/900
-    request.StartTime = '2023-07-24 16:15:00'  # StartTime type must be set
-    request.EndTime = '2023-07-24 16:25:00'  # EndTime type must be set
+    request.StartTime = '2023-08-01 16:15:00'  # StartTime must be set
+    request.EndTime = '2023-08-01 16:25:00'  # EndTime must be set
     response, err = client.DescribeInstanceMonitor(request)
     print(f"Describe  Instance Monitor response:{response}, err:{err}")
 
