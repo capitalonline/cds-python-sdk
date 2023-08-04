@@ -4,7 +4,7 @@ from capitalonline.instance.client import NewClient, NewAddInstanceRequest, NewM
     NewDescribeInstanceRequest, NewDeleteInstanceRequest, NewModifyInstanceSpecRequest, NewCreateDiskRequest, \
     NewResizeDiskRequest, NewDeleteDiskRequest, NewStartInstancesRequest, NewStopInstancesRequest, \
     NewRebootInstancesRequest, NewModifyIpRequest, NewExtendSystemDiskRequest, NewResetInstancesPasswordRequest, \
-    NewResetImageRequest, NewModifyInstanceChargeTypeRequest
+    NewResetImageRequest, NewModifyInstanceChargeTypeRequest, NewDescribeInstanceMonitorRequest
 from capitalonline.instance.models import DataDisk, PrivateIp, SystemDisk, OrderedIP
 
 ak = ''
@@ -338,6 +338,29 @@ def TestClient_ModifyInstanceChargeType():
     print(f"Modify Instance Charge Type response:{response}, err:{err}")
 
 
+def TestClient_DescribeInstanceMonitor():
+    """
+    get instance monitor.
+    :return:
+    """
+
+    client, err = NewClient(ak, sk, Beijing_region)
+    if err:
+        print(f'err:{err}')
+        return
+    request = NewDescribeInstanceMonitorRequest()
+    request.InstanceId = "instance_id"  # Instance id must be set.
+    request.MetricName = 'CPUUtilization'  # MetricName  must be set
+    request.Period = 60  # Period  must be set  60/900
+    request.StartTime = '2023-08-01 16:15:00'  # StartTime must be set
+    request.EndTime = '2023-08-01 16:25:00'  # EndTime must be set
+    request.InterfaceId = ''  # This parameter is required if you need to query network information
+    request.DiskId = ''  # This parameter is required if you need to query disk information
+    response, err = client.DescribeInstanceMonitor(request)
+    print(f"Describe  Instance Monitor response:{response}, err:{err}")
+
+
+
 if __name__ == '__main__':
     # TestClient_CreateInstance()
     # TestClient_DescribeInstance()
@@ -354,8 +377,8 @@ if __name__ == '__main__':
     # TestClient_ExtendSystemDisk()
     # TestClient_ResetInstancesPassword()
     # TestClient_ResetImage()
-    TestClient_ModifyInstanceChargeType()
-
+    # TestClient_ModifyInstanceChargeType()
+    TestClient_DescribeInstanceMonitor()
 
 
 

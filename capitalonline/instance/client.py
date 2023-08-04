@@ -5,7 +5,7 @@ from .models import AddInstanceRequest, DescribeInstanceRequest, DeleteInstanceR
     ModifyInstanceSpecRequest, CreateDiskRequest, ResizeDiskRequest, DeleteDiskRequest, ModifyIpRequest, \
     ExtendSystemDiskRequest, ResetInstancesPasswordRequest, ResetImageRequest, ModifyInstanceChargeTypeRequest, \
     StopInstanceRequest, RebootInstanceRequest, StartInstanceRequest, StartInstancesRequest, StopInstancesRequest, \
-    RebootInstancesRequest
+    RebootInstancesRequest,DescribeInstanceMonitorRequest
 import json
 from capitalonline.common.profile import http_profile, client_profile
 from capitalonline.common.credential import Credential
@@ -157,6 +157,12 @@ def NewStopInstancesRequest():
 def NewRebootInstancesRequest():
     request = RebootInstancesRequest(service=SERVICE, version=ApiVersion,
                                      action='RebootInstances')
+    return request
+
+
+def NewDescribeInstanceMonitorRequest():
+    request = DescribeInstanceMonitorRequest(service=SERVICE, version=ApiVersion,
+                                             action='DescribeInstanceMonitor')
     return request
 
 
@@ -345,6 +351,16 @@ class InstanceClient(Client):
             if request is None:
                 request = NewRebootInstancesRequest()
             self.profile.httpProfile.reqMethod = 'GET'
+            response = self.call(request.action, request.to_params())
+            return json.loads(response), ''
+        except Exception as e:
+            return '', e
+
+    def DescribeInstanceMonitor(self, request):
+        try:
+            if request is None:
+                request = NewDescribeInstanceMonitorRequest()
+            self.profile.httpProfile.reqMethod = 'POST'
             response = self.call(request.action, request.to_params())
             return json.loads(response), ''
         except Exception as e:
